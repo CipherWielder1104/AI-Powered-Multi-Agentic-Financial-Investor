@@ -59,6 +59,7 @@ def parse_stock_data(html):
         stock = {
             'Stock Name': cols[1].get_text(strip=True),
             'URL': link,
+            'Ticker': link.split('/')[2],
             'CMP (Rs.)': cols[2].get_text(strip=True),
             'P/E Ratio': cols[3].get_text(strip=True),
             'Market Cap (Rs. Cr.)': cols[4].get_text(strip=True),
