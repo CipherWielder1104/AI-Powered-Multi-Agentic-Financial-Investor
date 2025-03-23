@@ -29,4 +29,4 @@ df_final = df_combined.merge(df_original, on='Stock Name', how='left')
 df_final.to_csv("combined_stocks_with_scores.csv", index=False)
 
 # Show top 10 stocks based on aggregate score along with their full data
-print(df_final.head(10))
+# print(df_final.head(10))

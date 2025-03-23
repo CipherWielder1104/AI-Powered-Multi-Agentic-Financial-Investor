@@ -31,4 +31,4 @@ df_sorted = df.sort_values(by="Profitability Score", ascending=False)
 df_sorted.to_csv("risk_averse_investor_ranked_stocks.csv", index=False)
 
 # Show top 10 profitable stocks
-print(df_sorted[['Stock Name', 'Profitability Score']].head(10))
+# print(df_sorted[['Stock Name', 'Profitability Score']].head(10))
