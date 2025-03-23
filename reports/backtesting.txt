@@ -1,0 +1,110 @@
+
+Running strategy for NESTLEIND
+
+=== Backtest Results ===
+Last 10 Trades:
+Date: 2022-05-30, Type: SELL, Price: ₹1717.92
+Date: 2022-06-02, Type: SELL, Price: ₹1687.55
+Date: 2022-06-15, Type: BUY, Price: ₹1630.16
+Date: 2022-06-27, Type: SELL, Price: ₹1684.10
+Date: 2022-06-28, Type: SELL, Price: ₹1688.53
+Date: 2023-02-16, Type: SELL, Price: ₹1915.73
+Date: 2023-05-23, Type: BUY, Price: ₹2099.41
+Date: 2024-08-21, Type: SELL, Price: ₹2535.51
+Date: 2024-12-06, Type: SELL, Price: ₹2253.37
+Date: 2025-02-19, Type: BUY, Price: ₹2204.95
+Last Trade: BUY 30 days ago
+CAGR (Past 5 Years): 7.45%
+Total CAGR: 9.06%
+Current Recommendation: HOLD/NO ACTION
+Suggested Stop Loss: ₹2094.70
+Suggested Limit Buy: ₹2160.85
+
+
+Running strategy for BHARTIARTL
+
+=== Backtest Results ===
+Last 10 Trades:
+Date: 2021-02-26, Type: BUY, Price: ₹538.15
+Date: 2021-05-24, Type: BUY, Price: ₹509.61
+Date: 2022-01-06, Type: SELL, Price: ₹700.12
+Date: 2022-12-12, Type: BUY, Price: ₹820.04
+Date: 2023-02-03, Type: SELL, Price: ₹784.90
+Date: 2023-03-29, Type: BUY, Price: ₹736.10
+Date: 2023-12-20, Type: BUY, Price: ₹966.17
+Date: 2024-02-14, Type: BUY, Price: ₹1109.67
+Date: 2024-02-16, Type: BUY, Price: ₹1113.79
+Date: 2024-05-14, Type: BUY, Price: ₹1277.18
+Last Trade: BUY 311 days ago
+CAGR (Past 5 Years): 26.93%
+Total CAGR: 14.34%
+Current Recommendation: HOLD/NO ACTION
+Suggested Stop Loss: ₹1213.32
+Suggested Limit Buy: ₹1251.64
+
+
+Running strategy for MAXHEALTH
+
+=== Backtest Results ===
+Last 10 Trades:
+Date: 2021-03-19, Type: SELL, Price: ₹198.78
+Date: 2021-03-22, Type: SELL, Price: ₹203.36
+Date: 2022-11-23, Type: BUY, Price: ₹431.39
+Date: 2022-11-25, Type: BUY, Price: ₹429.59
+Date: 2023-04-03, Type: BUY, Price: ₹431.24
+Date: 2024-03-27, Type: SELL, Price: ₹800.91
+Date: 2024-03-28, Type: SELL, Price: ₹818.48
+Date: 2024-10-11, Type: BUY, Price: ₹939.80
+Date: 2025-02-03, Type: SELL, Price: ₹1145.00
+Date: 2025-02-04, Type: SELL, Price: ₹1174.30
+Last Trade: SELL 45 days ago
+CAGR (Past 5 Years): 60.07%
+Total CAGR: 58.95%
+Current Recommendation: BUY
+Suggested Stop Loss: ₹892.81
+Suggested Limit Buy: ₹921.00
+
+
+Running strategy for HDFCBANK
+
+=== Backtest Results ===
+Last 10 Trades:
+Date: 2022-01-28, Type: BUY, Price: ₹1410.77
+Date: 2022-03-29, Type: SELL, Price: ₹1399.73
+Date: 2022-07-04, Type: SELL, Price: ₹1322.22
+Date: 2023-11-16, Type: SELL, Price: ₹1488.03
+Date: 2023-11-21, Type: SELL, Price: ₹1497.50
+Date: 2024-03-05, Type: SELL, Price: ₹1421.44
+Date: 2024-07-15, Type: BUY, Price: ₹1622.10
+Date: 2024-07-16, Type: BUY, Price: ₹1619.75
+Date: 2024-12-24, Type: BUY, Price: ₹1798.10
+Date: 2025-01-31, Type: SELL, Price: ₹1698.75
+Last Trade: SELL 49 days ago
+CAGR (Past 5 Years): 8.49%
+Total CAGR: 20.03%
+Current Recommendation: BUY
+Suggested Stop Loss: ₹1708.19
+Suggested Limit Buy: ₹1762.14
+
+
+Running strategy for ICICIBANK
+
+=== Backtest Results ===
+Last 10 Trades:
+Date: 2020-09-17, Type: BUY, Price: ₹356.70
+Date: 2021-11-15, Type: BUY, Price: ₹749.71
+Date: 2021-11-16, Type: BUY, Price: ₹740.74
+Date: 2021-11-17, Type: BUY, Price: ₹738.07
+Date: 2022-03-29, Type: SELL, Price: ₹693.48
+Date: 2022-03-30, Type: SELL, Price: ₹708.60
+Date: 2022-07-04, Type: SELL, Price: ₹698.13
+Date: 2022-07-06, Type: SELL, Price: ₹703.80
+Date: 2024-05-21, Type: BUY, Price: ₹1111.38
+Date: 2024-05-22, Type: BUY, Price: ₹1101.62
+Last Trade: BUY 303 days ago
+CAGR (Past 5 Years): 20.59%
+Total CAGR: 16.79%
+Current Recommendation: HOLD/NO ACTION
+Suggested Stop Loss: ₹1046.54
+Suggested Limit Buy: ₹1079.58
+

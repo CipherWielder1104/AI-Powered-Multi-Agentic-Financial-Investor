@@ -11,6 +11,7 @@ import { TopAggregateStocks } from "@/components/top-aggregate-stocks"
 import { StockTable } from "@/components/stock-table"
 import { useStockData } from "@/hooks/use-stock-data"
 import { useReports } from "@/hooks/use-reports"
+import { MarkdownRenderer } from "@/components/markdown-renderer"
 
 export function Dashboard() {
   const {
@@ -92,7 +93,7 @@ export function Dashboard() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold">Stock Analysis Dashboard</h1>
+                <h1 className="text-2xl font-bold">Top Stock Recommendations</h1>
                 <p className="text-muted-foreground">
                   View top performing stocks across different investment strategies
                 </p>
@@ -129,9 +130,25 @@ export function Dashboard() {
 
         {activeTab === "analysis" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold">Stock Analysis</h1>
-              <p className="text-muted-foreground">Detailed analysis of all stocks in our database</p>
+            <div className="mb-6 flex justify-between items-center">
+              <div>
+                <h1 className="text-2xl font-bold">Stock Analysis</h1>
+                <p className="text-muted-foreground">Detailed analysis of all stocks in our database</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2"
+                onClick={() => {
+                  // Import the utility function
+                  import("@/utils/download-utils").then(({ downloadCSV }) => {
+                    downloadCSV(stockData, "stock-analysis-data.csv")
+                  })
+                }}
+              >
+                <Download className="h-4 w-4" />
+                Download CSV
+              </Button>
             </div>
 
             <Card className="p-6">
@@ -148,13 +165,33 @@ export function Dashboard() {
                 <Card className="p-6">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold">{report.name}</h2>
-                    <Button variant="outline" size="sm" className="gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="gap-2"
+                      onClick={() => {
+                        // Create a blob with the content
+                        const blob = new Blob([report.content], { type: "text/markdown" })
+                        const url = URL.createObjectURL(blob)
+
+                        // Create a temporary link and trigger download
+                        const a = document.createElement("a")
+                        a.href = url
+                        a.download = report.name
+                        document.body.appendChild(a)
+                        a.click()
+
+                        // Clean up
+                        URL.revokeObjectURL(url)
+                        document.body.removeChild(a)
+                      }}
+                    >
                       <Download className="h-4 w-4" />
                       Download
                     </Button>
                   </div>
-                  <div className="bg-muted p-4 rounded-md font-mono text-sm whitespace-pre-wrap h-[70vh] overflow-auto">
-                    {report.content}
+                  <div className="bg-muted p-4 rounded-md whitespace-pre-wrap h-[70vh] overflow-auto">
+                    <MarkdownRenderer content={report.content} />
                   </div>
                 </Card>
               </motion.div>

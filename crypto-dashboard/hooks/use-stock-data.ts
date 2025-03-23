@@ -274,26 +274,34 @@ export function useStockData() {
         // await new Promise((resolve) => setTimeout(resolve, 1000))
         setCurrentApiStage(0);
         const baseData = await fetch('http://localhost:5000/api/stocks/base').then(res => res.json());
-        console.log(baseData);
+        // console.log(baseData);
+        await new Promise((resolve) => setTimeout(resolve, 700))
         
         // Stage 2: Calculate value scores
         setCurrentApiStage(1);
         const valueScores = await fetch('http://localhost:5000/api/stocks/value-scores').then(res => res.json());
+        await new Promise((resolve) => setTimeout(resolve, 400))
         
+
         // Stage 3: Calculate growth scores
         setCurrentApiStage(2);
         const growthScores = await fetch('http://localhost:5000/api/stocks/growth-scores').then(res => res.json());
+        await new Promise((resolve) => setTimeout(resolve, 700))
         
         // Stage 4: Calculate risk scores
         setCurrentApiStage(3);
         const riskScores = await fetch('http://localhost:5000/api/stocks/risk-scores').then(res => res.json());
+        await new Promise((resolve) => setTimeout(resolve, 500))
         
         // Stage 5: Generate aggregate scores
         setCurrentApiStage(4);
         const aggregateScores = await fetch('http://localhost:5000/api/stocks/aggregate-scores').then(res => res.json());
+        await new Promise((resolve) => setTimeout(resolve, 1000))
 
         // Set the data
         setStockData(aggregateScores);
+
+        setCurrentApiStage(5);
 
 
         const combinedData = aggregateScores.map(stock => ({
@@ -364,237 +372,3 @@ export function useStockData() {
     topAggregateStocks,
   }
 }
-
-
-
-
-
-
-// "use client"
-
-// import { useState, useEffect } from "react"
-// import type { StockData } from "@/types/stock"
-
-// // Mock data remains for fallback
-// const mockStockData: StockData[] = [
-//   // ... (keeping all the original mock data)
-// ]
-
-// export function useStockData() {
-//   const [stockData, setStockData] = useState<StockData[]>([])
-//   const [isLoading, setIsLoading] = useState(true)
-//   const [currentApiStage, setCurrentApiStage] = useState(0)
-
-//   const [valueTopStocks, setValueTopStocks] = useState<StockData[]>([])
-//   const [growthTopStocks, setGrowthTopStocks] = useState<StockData[]>([])
-//   const [riskAverseTopStocks, setRiskAverseTopStocks] = useState<StockData[]>([])
-//   const [topAggregateStocks, setTopAggregateStocks] = useState<StockData[]>([])
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       try {
-//         setIsLoading(true)
-//         let processedData = []
-
-//         // Stage 1: Fetch base data
-//         setCurrentApiStage(0)
-//         const baseResponse = await fetch('http://localhost:5000/api/stocks/base')
-//         const baseDataText = await baseResponse.text()
-//         const baseData = parseCSVtoJSON(baseDataText)
-        
-//         // Stage 2: Calculate value scores
-//         setCurrentApiStage(1)
-//         const valueResponse = await fetch('http://localhost:5000/api/stocks/value-scores')
-//         const valueDataText = await valueResponse.text()
-//         const valueScores = parseCSVtoJSON(valueDataText)
-        
-//         // Stage 3: Calculate growth scores
-//         setCurrentApiStage(2)
-//         const growthResponse = await fetch('http://localhost:5000/api/stocks/growth-scores')
-//         const growthDataText = await growthResponse.text()
-//         const growthScores = parseCSVtoJSON(growthDataText)
-        
-//         // Stage 4: Calculate risk scores
-//         setCurrentApiStage(3)
-//         const riskResponse = await fetch('http://localhost:5000/api/stocks/risk-scores')
-//         const riskDataText = await riskResponse.text()
-//         const riskScores = parseCSVtoJSON(riskDataText)
-        
-//         // Stage 5: Generate aggregate scores
-//         setCurrentApiStage(4)
-//         const aggregateResponse = await fetch('http://localhost:5000/api/stocks/aggregate-scores')
-//         const aggregateDataText = await aggregateResponse.text()
-//         const aggregateScores = parseCSVtoJSON(aggregateDataText)
-
-//         // Since all APIs return the same data format, we'll use data from all responses
-//         // For a real implementation, we'd merge the data based on stock ticker
-
-//         // Process and map the data to the required format
-//         processedData = baseData.map((stockItem) => {
-//           console.log(stockItem);
-//           const ticker = stockItem["Ticker"]
-//           // Find corresponding items from other score lists (in real case these would be different)
-//           const valueItem = valueScores.find(item => item["Ticker"] === ticker) || stockItem
-//           const growthItem = growthScores.find(item => item["Ticker"] === ticker) || stockItem
-//           const riskItem = riskScores.find(item => item["Ticker"] === ticker) || stockItem
-//           const aggregateItem = aggregateScores.find(item => item["Ticker"] === ticker) || stockItem
-          
-//           // Generate scores for each investor type based on relevant metrics
-//           // In a real implementation, these would come from the different API responses
-//           const valueScore = calculateValueScore(stockItem).toFixed(1)
-//           const growthScore = calculateGrowthScore(stockItem).toFixed(1)
-//           const riskScore = calculateRiskScore(stockItem).toFixed(1)
-//           const aggScore = calculateAggregateScore(valueScore, growthScore, riskScore)
-          
-//           return {
-//             stockName: stockItem["Stock Name"],
-//             ticker: stockItem["Ticker"],
-//             url: "https://example.com" + stockItem["URL"],
-//             cmp: stockItem["CMP (Rs.)"].toString(),
-//             peRatio: stockItem["P/E Ratio"].toString(),
-//             marketCap: stockItem["Market Cap (Rs. Cr.)"].toString(),
-//             dividendYield: stockItem["Dividend Yield (%)"].toString(),
-//             netProfitQtr: stockItem["Net Profit (Qtr) (Rs. Cr.)"].toString(),
-//             qtrProfitVar: stockItem["Qtr Profit Var (%)"].toString(),
-//             salesQtr: stockItem["Sales (Qtr) (Rs. Cr.)"].toString(),
-//             qtrSalesVar: stockItem["Qtr Sales Var (%)"].toString(),
-//             roce: stockItem["ROCE (%)"].toString(),
-//             publicHolding: stockItem["Public Holding"].toString(),
-//             debtToEquity: stockItem["Debt to Equity"].toString(),
-//             profitPrev12M: stockItem["Profit Prev 12M (Rs. Cr.)"].toString(),
-//             salesVar5Yrs: stockItem["Sales Var (5Yrs) (%)"].toString(),
-//             profitVar5Yrs: stockItem["Profit Var (5Yrs) (%)"].toString(),
-//             valueInvestorScore: valueScore,
-//             growthInvestorScore: growthScore,
-//             riskAverseInvestorScore: riskScore,
-//             aggregateScore: aggScore
-//           }
-//         })
-
-//         setStockData(processedData)
-
-//         // Sort and set top stocks for each category
-//         const valueStocks = [...processedData]
-//           .sort((a, b) => Number.parseFloat(b.valueInvestorScore) - Number.parseFloat(a.valueInvestorScore))
-//           .slice(0, 3)
-
-//         const growthStocks = [...processedData]
-//           .sort((a, b) => Number.parseFloat(b.growthInvestorScore) - Number.parseFloat(a.growthInvestorScore))
-//           .slice(0, 3)
-
-//         const riskAverseStocks = [...processedData]
-//           .sort((a, b) => Number.parseFloat(b.riskAverseInvestorScore) - Number.parseFloat(a.riskAverseInvestorScore))
-//           .slice(0, 3)
-
-//         const aggregateStocks = [...processedData]
-//           .sort((a, b) => Number.parseFloat(b.aggregateScore) - Number.parseFloat(a.aggregateScore))
-//           .slice(0, 3)
-
-//         setValueTopStocks(valueStocks)
-//         setGrowthTopStocks(growthStocks)
-//         setRiskAverseTopStocks(riskAverseStocks)
-//         setTopAggregateStocks(aggregateStocks)
-
-//         setIsLoading(false)
-//       } catch (error) {
-//         console.error("Error fetching stock data:", error)
-        
-//         // Fallback to mock data if the API calls fail
-//         setStockData(mockStockData)
-        
-//         // Sort and set top stocks from mock data
-//         const valueStocks = [...mockStockData]
-//           .sort((a, b) => Number.parseFloat(b.valueInvestorScore) - Number.parseFloat(a.valueInvestorScore))
-//           .slice(0, 3)
-
-//         const growthStocks = [...mockStockData]
-//           .sort((a, b) => Number.parseFloat(b.growthInvestorScore) - Number.parseFloat(a.growthInvestorScore))
-//           .slice(0, 3)
-
-//         const riskAverseStocks = [...mockStockData]
-//           .sort((a, b) => Number.parseFloat(b.riskAverseInvestorScore) - Number.parseFloat(a.riskAverseInvestorScore))
-//           .slice(0, 3)
-
-//         const aggregateStocks = [...mockStockData]
-//           .sort((a, b) => Number.parseFloat(b.aggregateScore) - Number.parseFloat(a.aggregateScore))
-//           .slice(0, 3)
-
-//         setValueTopStocks(valueStocks)
-//         setGrowthTopStocks(growthStocks)
-//         setRiskAverseTopStocks(riskAverseStocks)
-//         setTopAggregateStocks(aggregateStocks)
-        
-//         setIsLoading(false)
-//       }
-//     }
-
-//     fetchData()
-//   }, [])
-
-//   // Helper function to parse CSV to JSON
-//   function parseCSVtoJSON(csvText) {
-//     const lines = csvText.split("\n")
-//     const headers = lines[0].split(",").map(header => header.trim())
-    
-//     const result = []
-//     for (let i = 1; i < lines.length; i++) {
-//       if (lines[i].trim() === "") continue
-      
-//       const obj = {}
-//       const currentLine = lines[i].split(",")
-      
-//       for (let j = 0; j < headers.length; j++) {
-//         // Handle numeric values
-//         const value = currentLine[j]?.trim()
-//         obj[headers[j]] = isNaN(value) ? value : parseFloat(value)
-//       }
-      
-//       result.push(obj)
-//     }
-    
-//     return result
-//   }
-
-//   // Functions to calculate scores based on metrics
-//   function calculateValueScore(stock) {
-//     // Example algorithm for value score (customize as needed)
-//     const peScore = stock["P/E Ratio"] < 30 ? 10 : 5
-//     const dyScore = stock["Dividend Yield (%)"] * 3
-//     const roceScore = stock["ROCE (%)"] / 20
-    
-//     return (peScore + dyScore + roceScore) / 3 * 10
-//   }
-
-//   function calculateGrowthScore(stock) {
-//     // Example algorithm for growth score
-//     const profitGrowthScore = stock["Profit Var (5Yrs) (%)"] / 3
-//     const salesGrowthScore = stock["Sales Var (5Yrs) (%)"] / 3
-//     const qtrGrowthScore = stock["Qtr Profit Var (%)"] / 5
-    
-//     return (profitGrowthScore + salesGrowthScore + qtrGrowthScore) / 3 * 10
-//   }
-
-//   function calculateRiskScore(stock) {
-//     // Example algorithm for risk score
-//     const debtScore = stock["Debt to Equity"] < 0.5 ? 10 : 5
-//     const publicHoldingScore = stock["Public Holding"] / 10
-//     const volatilityScore = 7 // Fixed score (would be based on volatility in real case)
-    
-//     return (debtScore + publicHoldingScore + volatilityScore) / 3 * 10
-//   }
-
-//   function calculateAggregateScore(valueScore, growthScore, riskScore) {
-//     // Equal weighted average of all scores
-//     return ((parseFloat(valueScore) + parseFloat(growthScore) + parseFloat(riskScore)) / 3).toFixed(1)
-//   }
-
-//   return {
-//     stockData,
-//     isLoading,
-//     currentApiStage,
-//     valueTopStocks,
-//     growthTopStocks,
-//     riskAverseTopStocks,
-//     topAggregateStocks,
-//   }
-// }

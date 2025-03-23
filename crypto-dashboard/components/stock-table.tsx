@@ -175,6 +175,20 @@ export function StockTable({ data, isLoading }: StockTableProps) {
         pageSize: 10,
       },
     },
+    globalFilterFn: (row, columnId, value) => {
+      const safeValue = (() => {
+        const val = row.getValue(columnId)
+        return typeof val === "number" ? String(val) : val
+      })()
+
+      return safeValue?.toString().toLowerCase().includes(value.toLowerCase())
+    },
+    filterFns: {
+      fuzzy: (row, columnId, filterValue) => {
+        const value = row.getValue(columnId)
+        return String(value).toLowerCase().includes(filterValue.toLowerCase())
+      },
+    },
   })
 
   if (isLoading) {
@@ -228,12 +242,22 @@ export function StockTable({ data, isLoading }: StockTableProps) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+              table.getRowModel().rows.map((row, index) => (
+                <motion.tr
+                  key={row.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: index * 0.05,
+                    ease: "easeOut",
+                  }}
+                  className={row.getIsSelected() ? "bg-muted/50" : undefined}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
-                </TableRow>
+                </motion.tr>
               ))
             ) : (
               <TableRow>

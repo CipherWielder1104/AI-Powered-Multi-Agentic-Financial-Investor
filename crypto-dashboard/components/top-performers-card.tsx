@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import type { StockData } from "@/types/stock"
-import { ExternalLink, Loader2 } from "lucide-react"
+import { ExternalLink } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface TopPerformersCardProps {
   title: string
@@ -53,14 +54,16 @@ export function TopPerformersCard({ title, stocks, isLoading, color }: TopPerfor
         <h3 className="text-lg font-semibold mb-3">{title}</h3>
 
         {isLoading ? (
-          <div className="flex flex-col items-center justify-center py-8 space-y-4">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            >
-              <Loader2 className="h-8 w-8 text-muted-foreground" />
-            </motion.div>
-            <p className="text-muted-foreground text-sm">Crunching the latest data...</p>
+          <div className="space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex items-center space-x-3">
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-5 w-3/4 animate-pulse bg-gray-500" />
+                  <Skeleton className="h-3 w-1/2 animate-pulse bg-gray-400" />
+                </div>
+                <Skeleton className="h-8 w-16 animate-pulse bg-gray-400" />
+              </div>
+            ))}
           </div>
         ) : (
           <div className="space-y-4">

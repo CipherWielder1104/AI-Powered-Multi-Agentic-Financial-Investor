@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import type { StockData } from "@/types/stock"
-import { ExternalLink, Loader2, Trophy } from "lucide-react"
+import { ExternalLink, Trophy } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface TopAggregateStocksProps {
   stocks: StockData[]
@@ -38,24 +39,28 @@ export function TopAggregateStocks({ stocks, isLoading }: TopAggregateStocksProp
       </div>
 
       {isLoading ? (
-        <div className="flex flex-col items-center justify-center py-12 space-y-4">
-          <motion.div
-            animate={{
-              boxShadow: [
-                "0 0 0 0 rgba(var(--primary), 0.7)",
-                "0 0 0 10px rgba(var(--primary), 0)",
-                "0 0 0 0 rgba(var(--primary), 0)",
-              ],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-            className="relative"
-          >
-            <Loader2 className="h-12 w-12 text-primary animate-spin" />
-          </motion.div>
-          <p className="text-muted-foreground">
-            Crunching the latest data to find the best investment opportunities...
-          </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="rounded-lg p-5 bg-muted/30 space-y-3">
+              <Skeleton className="h-6 w-3/4 animate-pulse bg-gray-500" />
+              <div className="flex justify-between items-center">
+                <Skeleton className="h-4 w-1/4 animate-pulse bg-gray-400" />
+                <Skeleton className="h-4 w-4 rounded-full animate-pulse bg-gray-300" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[1, 2, 3, 4].map((j) => (
+                  <div key={j} className="space-y-1">
+                    <Skeleton className="h-3 w-16 animate-pulse bg-gray-400" />
+                    <Skeleton className="h-4 w-12 animate-pulse bg-gray-300" />
+                  </div>
+                ))}
+              </div>
+              <div className="pt-3 border-t space-y-1">
+                <Skeleton className="h-3 w-24 animate-pulse bg-gray-400" />
+                <Skeleton className="h-6 w-16 animate-pulse bg-gray-300" />
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         <motion.div
