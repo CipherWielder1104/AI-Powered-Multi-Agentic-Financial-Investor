@@ -1,17 +1,45 @@
-# CENT.
+# CENT.: Multi-Agentic Financial Investors
 
-**CENT.** is an AI-powered agentic framework that enables you to create your own personalized financial advisors using intelligent agents. Whether you're a value investor, growth-focused, or risk-averse, CENT. leverages cutting-edge AI to analyze market trends, assess stock performance, and generate expert-level financial reports. With seamless automation and deep insights, you can build and deploy financial advisors tailored to your unique investment strategies—empowering smarter, data-driven decisions with ease.
+**CENT.** is a powerful multi-agentic framework for building AI-driven financial advisors. It automates the entire investment research process—from fundamental analysis to generating a final financial report. This system is designed to provide comprehensive, data-driven insights tailored to different investment strategies.
 
-## Project Description
 
-This project is a multi-agentic AI-powered financial advisory system built for automated investment guidance, integrating fundamental and technical analysis to optimize decision-making.
+## How It Works
 
-### Core Functionalities
+The CENT. workflow is a sophisticated pipeline where specialized agents work together to analyze potential investments. The process combines fundamental analysis, technical analysis, and AI-driven insights to produce a detailed report.
 
-- Building a multi-agent financial advisory platform for automated investment guidance.
+### 1. Fundamental Analysis
 
-- Implementing mathematical algorithms and AI-driven analytics to automate financial insights, reducing manual research and improving predictive accuracy for fintech and wealth management.
+The process begins with the **Stock Inspector Agent**, which uses a screener to scrape and analyze stocks. This data is then passed to three specialized agents:
 
-- Developing a scalable, AI-driven investment solution, enhancing risk-adjusted returns and financial strategy execution.
+- **Growth Investor Agent**: Focuses on companies with strong growth potential.  
+- **Value Investor Agent**: Identifies undervalued stocks with solid fundamentals.  
+- **Risk Manager Agent**: Assesses the risk profile of each stock.
+
+### 2. Technical Analysis
+
+Insights from the fundamental analysis agents are passed to the **Stock Orchestrator Agent**, which collaborates with the **Price Action Agent** to perform detailed technical analysis using indicators such as:
+
+- Envelopes  
+- RV Knox Divergence
+
+### 3. AI Analysis & Backtesting
+
+The output from the technical analysis phase undergoes **backtesting** to evaluate the historical performance of the strategy. A final, all-encompassing agent then:
+
+- Integrates all results  
+- Uses custom prompts  
+- Generates a comprehensive **Financial Report** combining all insights into a clear, actionable summary.
+
+
+## Why CENT.?
+
+- **Automation**: Reduces the need for manual research by automating complex financial analysis.
+
+- **Customization**: Tailor the agents to your specific investment philosophy—whether you're a growth, value, or risk-averse investor.
+
+- **Accuracy**: Combines multiple analytical approaches (fundamental, technical, and AI) to provide deeper, more reliable insights.
+
+- **Scalability**: The modular, multi-agentic architecture allows for easy expansion and integration of new analytical tools and strategies.
+
 
 ![The above image describes the workflow of the tool. Each block can be used as a an individual agent or in series and parallel](https://github.com/NG2411/cent/blob/main/cent_flow.jpg?raw=true)
