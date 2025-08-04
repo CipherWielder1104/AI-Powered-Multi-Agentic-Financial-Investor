@@ -1,4 +1,4 @@
-# CENT.: Multi-Agentic Financial Investors
+# CENT.
 
 **CENT.** is a powerful multi-agentic framework for building AI-driven financial advisors. It automates the entire investment research process—from fundamental analysis to generating a final financial report. This system is designed to provide comprehensive, data-driven insights tailored to different investment strategies.
 
