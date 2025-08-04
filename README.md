@@ -41,5 +41,7 @@ The output from the technical analysis phase undergoes **backtesting** to evalua
 
 - **Scalability**: The modular, multi-agentic architecture allows for easy expansion and integration of new analytical tools and strategies.
 
+## [Project Description(PDF)](./Project%20Description_Cent..pdf)
+
 
 ![The above image describes the workflow of the tool. Each block can be used as a an individual agent or in series and parallel](https://github.com/NG2411/cent/blob/main/cent_flow.jpg?raw=true)
